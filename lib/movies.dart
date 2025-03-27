@@ -1,14 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_curta/main.dart';
-
-class movies extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-  
-    throw UnimplementedError();
-  }
-}
-
 
 class Movies {
   late String link;
@@ -41,7 +30,6 @@ class Movies {
 
     ratingCount= "";
 
-
     originalTitle= "";
 
     duration= "";
@@ -71,15 +59,15 @@ class Movies {
         
   Map<String, dynamic> toJson() => {
         'Link': link,
-        ' IdImdb':  idImdb,
-        '  Title':  title,
-        ' Year':  year,
-        ' Description':  description,
+        'IdImdb':  idImdb,
+        'Title':  title,
+        'Year':  year,
+        'Description':  description,
         'Director':director,
-        ' Rating': rating,
+        'Rating': rating,
         'RatingCount':ratingCount,
-        ' OriginalTitle':  originalTitle,
-        ' Duration': duration,
+        'OriginalTitle':  originalTitle,
+        'Duration': duration,
         
       };
 }
