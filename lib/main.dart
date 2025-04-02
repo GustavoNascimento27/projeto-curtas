@@ -1,98 +1,68 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_curta/movies.dart';
-
 import 'dart:convert';
-import 'package:flutter/services.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
 void main() {
-  runApp(const MaterialApp(title: 'AppMoviess', home: MainApp()));
+  runApp(const MainApp());
 }
 
-class MainApp extends StatefulWidget {
+class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
   @override
-  MainAPP createState() => MainAPP();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Movies')),
+        body: const MovieList(),
+      ),
+    );
+  }
 }
 
-class MainAPP extends State<MainApp> {
-  List<Movies> movies = List.empty();
-  int total = 0;
-  Future<void> readJson({required BuildContext context}) async {
-    final String response = await DefaultAssetBundle.of(context).loadString('assets/movies.json');
-    Iterable data = await json.decode(response);
-    movies = List<Movies>.from(data.map((model) => Movies.fromJson(model)));
-    total = movies.length;
+class MovieList extends StatefulWidget {
+  const MovieList({super.key});
+
+  @override
+  _MovieListState createState() => _MovieListState();
+}
+
+class _MovieListState extends State<MovieList> {
+  List<dynamic> Movies = [];
+
+  @override
+  void initState() {
+    super.initState();
+    loadMovies();
+  }
+
+  Future<void> loadMovies() async {
+    final String jsonString = await rootBundle.loadString('assets/movies.json');
+    final List<dynamic> jsonResponse = json.decode(jsonString);
     setState(() {
-      movies;
-      total;
+      Movies = jsonResponse;
     });
   }
 
   @override
-  initState() {
-    super.initState();
-    //readJson(context: null);
-  }
-
-  @override
   Widget build(BuildContext context) {
-     return FutureBuilder(
-    future: readJson(context: context),
-    builder: (BuildContext context, AsyncSnapshot<void> jsonData){
-    return MaterialApp(
-        title: 'Movies',
-        home: Scaffold(
-            body: Center(
-          child: ListView.builder(
-            itemCount: total,
-            itemBuilder: (BuildContext context, int index) {
-              return Container(
-                child: Column(
-                  children: [
-                    Card(
-                      shape: RoundedRectangleBorder(
-                         side: BorderSide(color: Colors.black, width: 2),
-                          borderRadius: BorderRadius.circular(25)),
-                      color: const Color.fromARGB(255, 255, 211, 99),
-                      child: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Column(children: [
-                          Text(
-                            movies[index].title,
-                            style: TextStyle(color: Colors.black, fontSize: 25 ),
-                            textAlign: TextAlign.justify,
-                            
-                            
-                          ),
-                          Text(
-                            movies[index].director,
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                            textAlign: TextAlign.justify,
-                          ),
-                          Text(
-                            movies[index].idImdb,
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                            textAlign: TextAlign.justify,
-                          ),
-                          Text(
-                            movies[index].year.toString(),
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                            textAlign: TextAlign.justify,
-                          ),
-                          Text(
-                            movies[index].rating.toString(),
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                            textAlign: TextAlign.justify,
-                          )
-                        ]),
-                      ),
-                    ),
-                  ],
+    return Movies.isEmpty
+        ? const Center(child: CircularProgressIndicator())
+        : ListView.builder(
+          itemCount: Movies.length,
+          itemBuilder: (context, index) {
+            // ignore: non_constant_identifier_names
+            final Movie = Movies[index];
+            return Card(
+              margin: const EdgeInsets.all(10),
+              child: ListTile(
+                title: Text(Movie["title"]),
+                subtitle: Text(
+                  "Ano: ${Movie["year"]} | Descrição: ${Movie["description"]}  | Diretor: ${Movie["director"]}   | Titulo: ${Movie["title"]}   | Duração: ${Movie["duration"]}  | Avaliação: ${Movie["rating"]}",
                 ),
-              );
-            },
-          ),
-        )));
-       });
-}}
+              ),
+            );
+          },
+        );
+  }
+}

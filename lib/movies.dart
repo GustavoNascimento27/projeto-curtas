@@ -58,16 +58,16 @@ class Movies {
 
         
   Map<String, dynamic> toJson() => {
-        'Link': link,
-        'IdImdb':  idImdb,
-        'Title':  title,
-        'Year':  year,
-        'Description':  description,
-        'Director':director,
-        'Rating': rating,
-        'RatingCount':ratingCount,
-        'OriginalTitle':  originalTitle,
-        'Duration': duration,
+        'link': link,
+        'idImdb':  idImdb,
+        'title':  title,
+        'year':  year,
+        'description':  description,
+        'director':director,
+        'rating': rating,
+        'ratingCount':ratingCount,
+        'originalTitle':  originalTitle,
+        'duration': duration,
         
       };
 }

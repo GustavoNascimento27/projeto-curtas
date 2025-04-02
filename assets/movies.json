@@ -1,6 +1,5 @@
 
-  {
-    "movies": [
+   [
       {
         "link": "http://www.imdb.com/title/tt0222222/?ref_=rvi_tt",
         "idImdb": 222222,
@@ -45,7 +44,7 @@
         "idImdb": 222225,
         "year": 1973,
         "title": "Il nano e la strega",
-        "rating": 6,
+        "rating": 10,
         "ratingCount": "55",
         "createdAt": "2017-10-22 17:18:15",
         "originalTitle": "",
@@ -171,4 +170,4 @@
         "description": "Add a Plot »"
       }
     ]
-    }
+    
