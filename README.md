@@ -1,5 +1,5 @@
 NOME DO PROJETO:
-PROJETO FILMES
+PROJETO CURTAS
 --------------------------------
 INTEGRANTES:
 Gustavo Nascimento Rodrigues 
