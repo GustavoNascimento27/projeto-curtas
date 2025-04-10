@@ -10,3 +10,7 @@ Esse projeto visa listar alguns filmes, contendo titulo,descrição, diretor, da
 -------------------------------------------------
 Lista de links da WIKI:
 
+Página Main: https://github.com/GustavoNascimento27/projeto-curtas/wiki/P%C3%A1gina-Main
+
+Página Movies: https://github.com/GustavoNascimento27/projeto-curtas/wiki/P%C3%A1gina-Movies
+
