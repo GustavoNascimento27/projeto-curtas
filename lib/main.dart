@@ -54,12 +54,14 @@ class _MovieListState extends State<MovieList> {
             // ignore: non_constant_identifier_names
             final Movie = Movies[index];
             return Card(
-              margin: const EdgeInsets.all(10),
+              color: const Color.fromARGB(255, 166, 230, 241),
+              margin: const EdgeInsets.all(9),
               child: ListTile(
                 title: Text(Movie["title"]),
                 subtitle: Text(
                   "Ano: ${Movie["year"]} | Descrição: ${Movie["description"]}  | Diretor: ${Movie["director"]}   | Titulo: ${Movie["title"]}   | Duração: ${Movie["duration"]}  | Avaliação: ${Movie["rating"]}",
                 ),
+                
               ),
             );
           },
